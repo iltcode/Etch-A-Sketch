@@ -1,7 +1,9 @@
 const container = document.querySelector("#container");
 
- let rows = 16 ;
- let cols = 16;
+
+ let rc =  16;
+ let rows = rc ;
+ let cols = rc ;
 
 function makeRows(rows, cols) {
   container.style.setProperty('--grid-rows', rows);
@@ -32,8 +34,9 @@ function makeDrawingPad()
     singleEle.remove();
   });
 
-   rows = prompt("Enter the number of rows you want");
-   cols = prompt("Enter the number of cols you want");
+   rc = prompt("Enter the number of rows and cols you want");
+   rows = rc;
+   cols = rc ;
 
   if(rows > 100 || cols > 100)
   {
