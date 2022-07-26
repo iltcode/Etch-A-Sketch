@@ -17,15 +17,31 @@ function makeRows(rows, cols) {
 
 makeRows(rows,cols);
 drawColor();
-const btn = document.querySelector('.pad');
-btn.addEventListener('click',() =>
-{
-  makeDrawingPad();
-  drawColor();
+// const btn = document.querySelector('.pad');
+// btn.addEventListener('click',() =>
+// {
+//   makeDrawingPad();
+//   drawColor();
+// });
+
+const btnClear = document.querySelector('.cle');
+btnClear.addEventListener('click',() => {
+
+  const allEle = Array.from(document.querySelectorAll(".grid-item"));
+    
+    allEle.map(singleEle => {
+        singleEle.style.backgroundColor = "#ffffff";
+      });
+
 });
 
+const btnErase = document.querySelector('.era');
+btnErase.addEventListener('click',() =>
+{
+  deleteColor();
+});
 
-function makeDrawingPad()
+function makeDrawingPad(rc)
 {
   const allEle = Array.from(document.querySelectorAll(".grid-item"));
 
@@ -34,7 +50,7 @@ function makeDrawingPad()
     singleEle.remove();
   });
 
-   rc = prompt("Enter the number of rows and cols you want");
+  //  rc = prompt("Enter the number of rows and cols you want");
    rows = rc;
    cols = rc ;
 
@@ -43,8 +59,9 @@ function makeDrawingPad()
     for (let i = 1; i > 0; i++) {
       
       alert("Rows and cols must be less than or equall to 100");
-        rows = prompt("Enter the number of rows you want");
-        cols = prompt("Enter the number of cols you want");
+      rc = prompt("Enter the number of rows and cols you want");
+      rows = rc;
+      cols = rc ;
       if (rows <= 100 && cols <=100) {
           break;
       };
@@ -93,4 +110,54 @@ function drawColor()
 
 
 
+}
+
+
+
+function deleteColor()
+{
+
+      let draw = false;
+
+      const allCell = Array.from(document.querySelectorAll(".grid-item"));
+
+      allCell.map(singleCell => {
+        singleCell.addEventListener('mousedown', () => {
+          
+          // singleCell.style.backgroundColor = 'red';
+          //   console.log(singleCell.style.backgroundColor);
+          draw = true;
+
+        });
+      });
+
+
+      allCell.map(singleCell => {
+        singleCell.addEventListener('mousemove', () => {
+          if(draw === true)
+          {
+            singleCell.style.backgroundColor = 'white';
+            console.log(singleCell.style.backgroundColor);
+          }
+        })
+      });
+
+      window.addEventListener('mouseup', () => {
+          draw = false;
+      })
+
+
+
+
+}
+
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = `${slider.value} x ${slider.value}`;
+
+slider.oninput = function() {
+  output.innerHTML = `${this.value} x ${this.value}`;
+  makeDrawingPad(this.value);
+  drawColor();
 }

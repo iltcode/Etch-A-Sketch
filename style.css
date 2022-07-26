@@ -51,8 +51,10 @@
   }
 
   .grid-item {
-    background-color: white;
+    background-color: #ffffff;
   }
+
+ 
 
   button {
     margin: 10px;

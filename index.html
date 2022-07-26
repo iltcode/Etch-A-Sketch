@@ -5,15 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sliderStyle.css">
     <title>Etch-a-Sketch</title>
 </head>
 <body>
     <div class="main">
         <div class="btn_list">
-            <button class="pad">New Drawing Pad</button>
-            <button class="pad">New Drawing Pad</button>
-            <button class="pad">New Drawing Pad</button>
-            <button class="pad">New Drawing Pad</button>
+            <!-- <button class="pad">New Drawing Pad</button> -->
+            <button class="cle">Clear</button>
+            <button class="era">Erase</button>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="16" class="slider" id="myRange">
+                <p><span id="demo"></span></p>
+              </div>
         </div>
         
         <div class="sub_main">
