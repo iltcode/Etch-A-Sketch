@@ -75,7 +75,7 @@ function makeDrawingPad(rc)
 };
 
 
-function drawColor()
+function drawColor(color)
 {
 
       let draw = false;
@@ -97,7 +97,7 @@ function drawColor()
         singleCell.addEventListener('mousemove', () => {
           if(draw === true)
           {
-            singleCell.style.backgroundColor = 'red';
+            singleCell.style.backgroundColor = color;
             console.log(singleCell.style.backgroundColor);
           }
         })
@@ -151,6 +151,14 @@ function deleteColor()
 
 }
 
+function generateRandomColor(){
+  let maxVal = 0xFFFFFF; // 16777215
+  let randomNumber = Math.random() * maxVal; 
+  randomNumber = Math.floor(randomNumber);
+  randomNumber = randomNumber.toString(16);
+  let randColor = randomNumber.padStart(6, 0);   
+  return `#${randColor.toUpperCase()}`
+}
 
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
@@ -159,5 +167,6 @@ output.innerHTML = `${slider.value} x ${slider.value}`;
 slider.oninput = function() {
   output.innerHTML = `${this.value} x ${this.value}`;
   makeDrawingPad(this.value);
-  drawColor();
+  let zColor = generateRandomColor();
+  drawColor(zColor);
 }
