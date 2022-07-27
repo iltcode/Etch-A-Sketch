@@ -160,6 +160,33 @@ function generateRandomColor(){
   return `#${randColor.toUpperCase()}`
 }
 
+
+
+
+// iro.js
+
+var colorPicker = new iro.ColorPicker(".colorPicker", {
+  // color picker options
+  // Option guide: https://iro.js.org/guide.html#color-picker-options
+  width: 180,
+  color: "rgb(255, 0, 0)",
+  borderWidth: 1,
+  borderColor: "#fff",
+});
+
+colorPicker.on(["color:init", "color:change"], function(color){
+  
+  
+  let zColor = color.hexString;
+  drawColor(zColor);
+});
+
+// hexInput.addEventListener('change', function() {
+//   colorPicker.color.hexString = this.value;
+// });
+
+// slider
+
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
 output.innerHTML = `${slider.value} x ${slider.value}`;
@@ -167,6 +194,7 @@ output.innerHTML = `${slider.value} x ${slider.value}`;
 slider.oninput = function() {
   output.innerHTML = `${this.value} x ${this.value}`;
   makeDrawingPad(this.value);
-  let zColor = generateRandomColor();
-  drawColor(zColor);
+  // let zColor = generateRandomColor();
+  // drawColor(zColor);
+  drawColor(colorPicker.color.hexString);
 }
